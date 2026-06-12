@@ -1,5 +1,4 @@
-import { redirect } from "next/navigation";
-
+// HTTP redirect handled by next.config.ts redirects()
 export default function Home() {
-  redirect("/discover");
+  return null;
 }
