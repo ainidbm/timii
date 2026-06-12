@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthGate } from "@/components/shell/auth-gate";
 import { ShellLayout } from "@/components/shell/shell-layout";
 import { SWRegister } from "@/components/pwa/sw-register";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Timii - 连线搞一切",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <AuthGate>
           <ShellLayout>{children}</ShellLayout>
         </AuthGate>
+        <SpeedInsights />
       </body>
     </html>
   );
