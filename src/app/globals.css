@@ -1,26 +1,380 @@
-@import "tailwindcss";
+/* ============================================
+   Timii Design System — v2.0
+   来源: Ardot 设计文件 · 画布 390×844 (iPhone 14 Pro)
+   ============================================ */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ── shadcn/ui 兼容层（保留 shadcn 变量体系） ── */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* === Typography === */
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-space-grotesk);
+  --font-heading: var(--font-space-grotesk);
+
+  /* === Colors === */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  /* === shadcn sidebar compat === */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  /* === Radius === */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ============================================
+   Light Theme (default) — 发现 / 房间 / 仪表盘 / 个人
+   ============================================ */
+:root {
+  /* 主色调 */
+  --color-accent: #4A90E2;
+  --color-accent-dim: rgba(74, 144, 226, 0.15);
+  --color-accent-alt: #F5A623;
+  --color-accent-alt-dim: rgba(245, 166, 35, 0.12);
+
+  /* 背景 */
+  --color-bg-primary: #F2F3F5;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #F5F6F8;
+
+  /* 文字 */
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #66666B;
+  --color-text-tertiary: #8C8C91;
+
+  /* 边框 */
+  --color-border: #E6E6EB;
+  --color-border-light: #F0F0F5;
+
+  /* 状态色 */
+  --color-online: #33C759;
+  --color-success: #33C759;
+  --color-danger: #EF4444;
+
+  /* 深色主题用 */
+  --color-dark-bg: #080D0F;
+  --color-dark-card: #121721;
+  --color-dark-text: #E6E8EB;
+  --color-dark-subtext: #B3B3B8;
+
+  /* 阴影 */
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-button: 0 0 40px rgba(74, 144, 226, 0.3);
+  --shadow-nav: 0 -2px 12px rgba(0, 0, 0, 0.06);
+
+  /* 圆角 */
+  --radius: 0.75rem;
+
+  /* ── shadcn 映射 ── */
+  --background: #F2F3F5;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #4A90E2;
+  --primary-foreground: #FFFFFF;
+  --secondary: #F5F6F8;
+  --secondary-foreground: #1A1A1A;
+  --muted: #F5F6F8;
+  --muted-foreground: #8C8C91;
+  --accent: rgba(74, 144, 226, 0.12);
+  --accent-foreground: #4A90E2;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #E6E6EB;
+  --input: #F5F6F8;
+  --ring: #4A90E2;
+
+  --sidebar: #F2F3F5;
+  --sidebar-foreground: #1A1A1A;
+  --sidebar-primary: #4A90E2;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F5F6F8;
+  --sidebar-accent-foreground: #1A1A1A;
+  --sidebar-border: #E6E6EB;
+  --sidebar-ring: #4A90E2;
+}
+
+/* ============================================
+   Dark Theme — FM / Auth 页
+   ============================================ */
+.dark {
+  --background: #080D0F;
+  --foreground: #E6E8EB;
+  --card: #121721;
+  --card-foreground: #E6E8EB;
+  --popover: #121721;
+  --popover-foreground: #E6E8EB;
+  --primary: #4A90E2;
+  --primary-foreground: #FFFFFF;
+  --secondary: #121721;
+  --secondary-foreground: #E6E8EB;
+  --muted: #121721;
+  --muted-foreground: #B3B3B8;
+  --accent: rgba(74, 144, 226, 0.18);
+  --accent-foreground: #4A90E2;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: #121721;
+  --ring: #4A90E2;
+
+  --color-accent: #4A90E2;
+  --color-accent-dim: rgba(74, 144, 226, 0.18);
+  --color-accent-alt: #F5A623;
+  --color-accent-alt-dim: rgba(245, 166, 35, 0.12);
+  --color-bg-primary: #080D0F;
+  --color-bg-secondary: #121721;
+  --color-bg-tertiary: #121721;
+  --color-text-primary: #E6E8EB;
+  --color-text-secondary: #B3B3B8;
+  --color-text-tertiary: #9CA6B0;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-light: rgba(255, 255, 255, 0.06);
+  --color-online: #33C759;
+  --color-success: #33C759;
+  --color-danger: #EF4444;
+  --color-dark-bg: #080D0F;
+  --color-dark-card: #121721;
+  --color-dark-text: #E6E8EB;
+  --color-dark-subtext: #B3B3B8;
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-button: 0 0 40px rgba(74, 144, 226, 0.3);
+  --shadow-nav: 0 -2px 12px rgba(0, 0, 0, 0.4);
+
+  --sidebar: #080D0F;
+  --sidebar-foreground: #E6E8EB;
+  --sidebar-primary: #4A90E2;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #121721;
+  --sidebar-accent-foreground: #E6E8EB;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #4A90E2;
+}
+
+/* ── 基础重置 ── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ── 选择颜色 ── */
+::selection {
+  background: var(--color-accent-dim);
+  color: var(--color-text-primary);
+}
+
+/* ── 自定义工具类 ── */
+.text-secondary { color: var(--color-text-secondary); }
+.text-tertiary  { color: var(--color-text-tertiary); }
+.text-accent    { color: var(--color-accent); }
+.text-online    { color: var(--color-online); }
+.font-title     { font-family: var(--font-space-grotesk); }
+
+/* 滚动条隐藏 */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* 胶囊搜索栏 */
+.search-capsule {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-tertiary);
+  border-radius: 999px;
+  padding: 8px 16px;
+  height: 40px;
+}
+.dark .search-capsule {
+  background: var(--color-dark-card);
+  border: 1px solid var(--color-border);
+}
+.search-capsule__icon { width: 18px; height: 18px; flex-shrink: 0; color: var(--color-text-tertiary); }
+.search-capsule__input {
+  flex: 1; border: none; background: none; outline: none;
+  font-size: 14px; color: var(--color-text-primary); font-family: inherit;
+}
+.search-capsule__input::placeholder { color: var(--color-text-tertiary); }
+
+/* 头像在线环 */
+.avatar-ring {
+  position: relative; width: 48px; height: 48px; border-radius: 50%; overflow: visible;
+}
+.avatar-ring__img {
+  width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--color-bg-secondary);
+}
+.avatar-ring--online::after {
+  content: ''; position: absolute; bottom: -2px; right: -2px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--color-online); border: 2px solid var(--color-bg-secondary);
+}
+.avatar-ring--accent { border: 3px solid var(--color-accent); }
+
+/* ── 底部胶囊导航栏 ── */
+.bottom-nav {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 64px);
+  max-width: calc(390px - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--color-bg-secondary);
+  border-radius: 999px;
+  padding: 8px 16px;
+  box-shadow: var(--shadow-nav);
+  border: 1px solid var(--color-border-light);
+  z-index: 100;
+}
+.bottom-nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--color-text-tertiary);
+  font-size: 10px;
+  font-family: inherit;
+  transition: color 0.2s, background 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.bottom-nav__item svg { width: 22px; height: 22px; }
+.bottom-nav__item--active {
+  color: var(--color-accent);
+  background: var(--color-accent-dim);
+}
+
+/* ============================================
+   Global Keyframe Animations
+   ============================================ */
+
+/* ── Starfield twinkle (FM page) ── */
+@keyframes starTwinkle {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.85; }
+}
+
+/* ── FM connect button pulse glow ── */
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 40px rgba(74, 144, 226, 0.3); }
+  50%      { box-shadow: 0 0 60px rgba(74, 144, 226, 0.5); }
+}
+
+/* ── Fade scale in ── */
+@keyframes fadeScaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Slide up fade ── */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Connection pulse (online indicator) ── */
+@keyframes connectionPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* ── Tomato bar shimmer ── */
+@keyframes barShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* ── Utility animation classes ── */
+.animate-fade-scale-in { animation: fadeScaleIn 0.25s ease-out forwards; }
+.animate-slide-up-fade  { animation: slideUpFade 0.3s ease-out forwards; }
+.animate-connection-pulse { animation: connectionPulse 1.5s ease-in-out infinite; }
+
+/* ============================================
+   Reduced Motion — Accessibility
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   PC Layout — Three-Column (lg+ breakpoint)
+   ============================================ */
+@media (min-width: 1024px) {
+  /* Middle content column — list views on discover, messages, etc. */
+  .pc-middle-col {
+    width: 320px;
+    min-width: 320px;
+    border-right: 1px solid var(--color-border);
+    overflow-y: auto;
+    height: 100vh;
+    position: fixed;
+    left: 90px;
+    top: 0;
+  }
+
+  /* Right main content area — detail views */
+  .pc-main-col {
+    margin-left: calc(90px + 320px);
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  /* Hide mobile bottom nav on PC */
+  .bottom-nav {
+    display: none !important;
+  }
 }

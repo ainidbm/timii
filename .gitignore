@@ -39,3 +39,29 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sqlite
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# AI agent configs
+.agents/
+.claude/
+.trae/
+skills-lock.json
+
+# project handoff & reports
+handoff-*.md
+TEST_REPORT.md
+prototypes/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+Desktop.ini
