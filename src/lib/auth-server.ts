@@ -41,9 +41,11 @@ export function invalidateToken(token: string): void {
 }
 
 // Periodically clean expired sessions (every 10 minutes)
+// Skip on Vercel — serverless functions are ephemeral
 let cleanupInterval: ReturnType<typeof setInterval> | null = null;
 export function startSessionCleanup() {
   if (cleanupInterval) return;
+  if (process.env.VERCEL) return;
   cleanupInterval = setInterval(() => {
     try {
       const db = getDb();

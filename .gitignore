@@ -65,3 +65,6 @@ prototypes/
 # OS
 Thumbs.db
 Desktop.ini
+
+# Vercel
+.vercel

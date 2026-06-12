@@ -6,6 +6,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* ── Font Stack Variables (runtime Google Fonts, no build-time fetch) ── */
+:root {
+  --font-dm-sans: 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-space-grotesk: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 /* ── shadcn/ui 兼容层（保留 shadcn 变量体系） ── */
 @custom-variant dark (&:is(.dark *));
 
